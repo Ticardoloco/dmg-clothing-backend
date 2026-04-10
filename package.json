@@ -1,0 +1,27 @@
+{
+  "name": "dmg-clothing-backend",
+  "version": "1.0.0",
+  "description": "It is a clothing brand that produce and sells all sorts of men wears",
+  "homepage": "https://github.com/Ticardoloco/dmg-clothing-backend#readme",
+  "bugs": {
+    "url": "https://github.com/Ticardoloco/dmg-clothing-backend/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ticardoloco/dmg-clothing-backend.git"
+  },
+  "license": "ISC",
+  "author": "Taiwo",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node backend/src/index.js",
+    "dev": "nodemon backend/src/index.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.1",
+    "express": "^5.2.1",
+    "mongoose": "^9.4.1",
+    "nodemon": "^3.1.14"
+  }
+}
