@@ -2,7 +2,7 @@ import { Product } from "../models/product.model.js";
 
 const postProduct = async (req, res) => {
     try {
-        const { name, description, price, image, category, subCategory, sizes, bestSeller } = req.body;
+        const { name, description, price, image, category, subCategory, sizes, colors, bestSeller } = req.body;
 
         if(!name || !description || !price || !image || !category || !subCategory || !sizes){
             return res.status(400).json({
@@ -24,6 +24,7 @@ const postProduct = async (req, res) => {
                 category,
                 subCategory,
                 sizes,
+                colors,
                 bestSeller
             });
 

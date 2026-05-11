@@ -17,7 +17,7 @@ const userSchema = new Schema(
             type: String,
             required: true,
             minLength: 6,
-            maxLength: 50
+            maxLength: 100
         },
 
         email: {
@@ -26,16 +26,40 @@ const userSchema = new Schema(
             unique: true,
             lowercase: true,
             trim: true,
+        },
+
+        phone: {
+            type: String,
+            default: "",
+        },
+
+        avatar: {
+            type: String,
+            default: "",
+        },
+        
+        address: {
+            street: { type: String, default: "" },
+            city: { type: String, default: "" },
+            state: { type: String, default: "" },
+            country: { type: String, default: "" },
+        },
+
+        isAdmin: {
+            type: Boolean,
+            default: false,
         }
+
     },
     {
         timestamps: true
     }
 );
 
-userSchema.pre('save', async function (next) {
-    if (!this.isModified("password")) return next();
-    this.password = await bcrypt.hash(this.password, 10)
+userSchema.pre('save', async function () {
+    if (!this.isModified("password")) return;
+    this.password = await bcrypt.hash(this.password, 10);
+    
 });
 
 userSchema.methods.comparePassword = async function (password){

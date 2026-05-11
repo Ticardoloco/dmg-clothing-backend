@@ -16,12 +16,14 @@ const productSchema = new Schema(
 
         price: {
             type: Number,
-            required: true
+            required: true,
+             min: 0
         },
 
         image: {
             type: [String],
-            required: true
+            required: true,
+            validate: [(arr) => arr.length > 0, 'At least one image is required']
         },
 
         category: {
@@ -38,8 +40,14 @@ const productSchema = new Schema(
 
         sizes:{
             type: [String],
-            required: true
+            required: true,
+            validate: [(arr) => arr.length > 0, 'At least one size is required']
         }, 
+
+        colors:{
+            type: [String],
+            default: []
+        },
 
         bestSeller: {
             type: Boolean,
