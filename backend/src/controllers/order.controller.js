@@ -1,5 +1,6 @@
 import { Order } from "../models/order.model.js";
 import { Product } from "../models/product.model.js";
+import sendOrderNotification from "../utils/sendEmail.js";
 
 const createOrder = async (req, res) => {
   try {
@@ -97,10 +98,15 @@ const createOrder = async (req, res) => {
       paymentMethod: paymentMethod ? paymentMethod.toLowerCase() : "cod",
     });
 
+    // --- 2. TRIGGER THE EMAIL NOTIFICATION HERE ---
+    // Pass order details and the user object down to the notification handler
+    sendOrderNotification(order, req.user);
+
     return res.status(201).json({
       message: "Order created successfully",
       order,
     });
+    
   } catch (error) {
     console.error("ERROR IN CREATE_ORDER:", error);
     res
