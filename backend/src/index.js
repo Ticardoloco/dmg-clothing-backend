@@ -3,7 +3,6 @@ import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 import connectDB from "./config/database.js";
 import app from "./app.js";
-import serverless from "serverless-http";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -31,7 +30,12 @@ const startServer = async () => {
 // Initialize DB connection
 startServer();
 
-const handler = serverless(app);
+if (process.env.NODE_ENV !== "production") {
+  const PORT = process.env.PORT || 4001;
+  app.listen(PORT, () => {
+    console.log(`Server running in ${process.env.NODE_ENV || "development"} mode on port ${PORT}`);
+  });
+}
 
-// Export serverless handler for Vercel and other serverless environments
-export default handler;
+// Export Express app for Vercel serverless deployment
+export default app;
