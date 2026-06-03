@@ -33,12 +33,5 @@ startServer();
 
 const handler = serverless(app);
 
-if (process.env.NODE_ENV !== "production") {
-  const PORT = process.env.PORT || 4001;
-  app.listen(PORT, () => {
-    console.log(`Server running in ${process.env.NODE_ENV || "development"} mode on port ${PORT}`);
-  });
-}
-
 // Export serverless handler for Vercel and other serverless environments
 export default handler;
