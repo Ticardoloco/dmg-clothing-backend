@@ -1,1 +1,0 @@
-module.exports.handler = require('../backend/src/index').handler;

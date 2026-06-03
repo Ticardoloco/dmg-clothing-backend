@@ -1,6 +1,5 @@
 import express from "express";
 import cors from "cors";
-import serverless from "serverless-http";
 
 const app = express()
 
@@ -29,7 +28,7 @@ app.use("/api/v1/mailinglist", mailingListRouter);
 app.use("/api/v1/admin", adminRouter);
 
 
-export default serverless(app);
+export default app;
 
 
 // api url: http://localhost:4001/api/v1/user
